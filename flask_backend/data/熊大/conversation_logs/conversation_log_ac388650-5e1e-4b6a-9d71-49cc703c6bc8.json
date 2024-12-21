@@ -1,0 +1,15 @@
+{
+    "chatId": "ac388650-5e1e-4b6a-9d71-49cc703c6bc8",
+    "messages": [
+        {
+            "role": "user",
+            "content": "你好呀~",
+            "timestamp": "2024-12-10 16:54:13"
+        },
+        {
+            "role": "assistant",
+            "content": "你好呀~ 很高兴和你交谈！有什么我可以帮助你的吗？",
+            "timestamp": "2024-12-10 16:54:14"
+        }
+    ]
+}
