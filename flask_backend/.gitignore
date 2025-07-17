@@ -1,8 +1,9 @@
-# 忽略 Python 编译文件
+# Python 缓存文件
 __pycache__/
 
-# 忽略虚拟环境文件夹
+
+# 虚拟环境目录
 .venv/
 
-# 忽略密钥等配置
-config.py
+# （本地测试用）用户数据
+data/

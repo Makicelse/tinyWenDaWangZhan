@@ -28,7 +28,10 @@ spark = ChatSparkLLM(
 )
 
 # 允许来自前端的源的跨域请求
-CORS(app, origins="http://localhost:8080")
+CORS(app, origins=[
+    "http://localhost:8080"                         # 本地调试
+    "https://tiny-wen-da-wang-zhan.vercel.app/"     # 上线前端
+])
 
 app.config['SECRET_KEY'] = SECRET_KEY
 jwt = JWTManager(app)  # 初始化 JWT 扩展
