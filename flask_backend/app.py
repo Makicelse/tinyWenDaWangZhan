@@ -29,7 +29,7 @@ spark = ChatSparkLLM(
 
 # 允许来自前端的源的跨域请求
 CORS(app, origins=[
-    "http://localhost:8080"                         # 本地调试
+    "http://localhost:8080",                          # 本地调试
     "https://tiny-wen-da-wang-zhan.vercel.app/"     # 上线前端
 ])
 
