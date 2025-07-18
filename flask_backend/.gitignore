@@ -7,3 +7,6 @@ __pycache__/
 
 # （本地测试用）用户数据
 data/
+
+# 密钥 config 文件
+config.py

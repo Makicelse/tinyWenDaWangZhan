@@ -3,19 +3,24 @@ from flask_cors import CORS
 from flask_jwt_extended import JWTManager, create_access_token, jwt_required, get_jwt_identity
 from sparkai.llm.llm import ChatSparkLLM, ChunkPrintHandler
 from sparkai.core.messages import ChatMessage
+import os
 
 import module.conversation as conversation
 import module.user_manager as user_manager
-from config import SECRET_KEY
+# 本地开发时用
+# from config import SECRET_KEY
+
+
 
 app = Flask(__name__)
 
 # 星火大模型的配置参数
 SPARKAI_URL = 'wss://spark-api.xf-yun.com/v1.1/chat'
-SPARKAI_APP_ID = '908e7a6b'
-SPARKAI_API_SECRET = 'ZGVjMjExYWQzYzczZjhjNzU0ODk3MjQ5'
-SPARKAI_API_KEY = 'f352115cfe803f154ac8617514850dc7'
-SPARKAI_DOMAIN = 'lite'
+SPARKAI_APP_ID = os.environ.get('SPARKAI_APP_ID')
+SPARKAI_API_SECRET = os.environ.get('SPARKAI_API_SECRET')
+SPARKAI_API_KEY = os.environ.get('SPARKAI_API_KEY')
+SPARKAI_DOMAIN = os.environ.get('SPARKAI_DOMAIN', 'lite')
+SECRET_KEY = os.environ.get('SECRET_KEY', 'dev-secret-key')
 
 # 初始化星火大模型
 spark = ChatSparkLLM(
@@ -134,4 +139,6 @@ def user_login():
 
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    # 在 Railway 部署中监听端口
+    port = int(os.environ.get('PORT', 5000))
+    app.run(host='0.0.0.0', port=port)
