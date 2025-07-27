@@ -29,11 +29,12 @@
 <script>
 import message from "@/components/message.vue";
 import historyChatsList from "@/components/historyChatsList.vue";
+import store from "@/store";
 
 export default {
   data() {
     return {
-      cur_chatId: this.generateUUid(),
+      cur_chatId: null,
       input: "",
       messages: [],
     };
@@ -42,13 +43,16 @@ export default {
     message,
     historyChatsList,
   },
-  created() {},
   methods: {
     generateTimeId() {
       return `id_${Date.now()}`;
     },
     generateUUid() {
       return crypto.randomUUID();
+    },
+    generateChatId() {
+      this.cur_chatId = this.generateUUid();
+      store.commit("setChatId", this.cur_chatId);
     },
     postInput() {
       let ques = this.input;
@@ -71,7 +75,7 @@ export default {
           },
           {
             headers: {
-              Authorization: `Bearer ${this.$store.state.accessToken}`,
+              Authorization: `Bearer ${store.state.accessToken}`,
             },
           }
         )
@@ -119,6 +123,47 @@ export default {
           console.error("请求接口失败：", error);
         });
     },
+  },
+  watch: {
+    // 每当页面信息（messages 数组）变化时，执行该函数
+    // storeMessages() {
+    //   store.commit('setMessages', this.messages);
+    // }
+    // 深层监视
+    messages: {
+      handler(newVal) {
+        store.commit("setMessages", newVal);
+      },
+      deep: true, // 深度监听数组内容变化
+    },
+  },
+  created() {
+    const isnotFirstVisit = store.state.accessToken;
+    // if (!isFirstVisit) {
+    //   this.cur_chatId = this.generateChatId(); // 生成新 chatId
+    //   store.commit("setChatId", this.cur_chatId); // 存储 chatId
+    // }
+    store.dispatch("initializeState").then(() => {
+      if (isnotFirstVisit) {
+        // 第一次访问，创建新的 chatId
+        this.generateChatId();
+      }
+    })
+    // .then(() => {
+    //   // 带请求头，向后端发送请求
+    //   this.$axios
+    //     .post(
+    //       "http://127.0.0.1:5000/chat",
+    //       {
+            
+    //       },
+    //       {
+    //         headers: {
+    //           Authorization: `Bearer ${store.state.accessToken}`,
+    //         },
+    //       }
+    //     )
+    // });
   },
 };
 </script>

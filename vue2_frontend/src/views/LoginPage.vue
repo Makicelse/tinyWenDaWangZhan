@@ -22,7 +22,7 @@
             show-password
           ></el-input>
         </div>
-        
+
         <div class="button">
           <el-button @click="postLogin()" type="primary">登录</el-button>
         </div>
@@ -73,6 +73,7 @@ export default {
           alert("似乎出错了……");
         });
     },
+    
   },
 };
 </script>
