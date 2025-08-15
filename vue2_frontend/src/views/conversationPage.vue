@@ -148,22 +148,9 @@ export default {
         // 第一次访问，创建新的 chatId
         this.generateChatId();
       }
-    })
-    // .then(() => {
-    //   // 带请求头，向后端发送请求
-    //   this.$axios
-    //     .post(
-    //       "http://127.0.0.1:5000/chat",
-    //       {
-            
-    //       },
-    //       {
-    //         headers: {
-    //           Authorization: `Bearer ${store.state.accessToken}`,
-    //         },
-    //       }
-    //     )
-    // });
+    });
+    // 从 store 中恢复 messages（深拷贝）
+    this.messages = JSON.parse(JSON.stringify(store.state.messages));
   },
 };
 </script>

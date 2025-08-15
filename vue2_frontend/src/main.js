@@ -1,5 +1,5 @@
 import Vue from "vue";
-import { Button, Input, Link } from "element-ui";
+import { Button, Container, Input, Link, Main } from "element-ui";
 import App from "./App.vue";
 
 import axios from "axios";
@@ -14,8 +14,10 @@ Vue.prototype.$axios = axios;
 
 // 按需引入 Element-UI
 Vue.use(Button);
+Vue.use(Container);
 Vue.use(Input);
 Vue.use(Link);
+Vue.use(Main);
 
 new Vue({
   render: (h) => h(App),

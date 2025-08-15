@@ -8,7 +8,7 @@ import os
 import module.conversation as conversation
 import module.user_manager as user_manager
 # 本地开发时用
-# from config import SECRET_KEY
+from config import SPARKAI_APP_ID, SPARKAI_API_SECRET, SPARKAI_API_KEY, SPARKAI_DOMAIN, SECRET_KEY
 
 
 
@@ -16,11 +16,12 @@ app = Flask(__name__)
 
 # 星火大模型的配置参数
 SPARKAI_URL = 'wss://spark-api.xf-yun.com/v1.1/chat'
-SPARKAI_APP_ID = os.environ.get('SPARKAI_APP_ID')
-SPARKAI_API_SECRET = os.environ.get('SPARKAI_API_SECRET')
-SPARKAI_API_KEY = os.environ.get('SPARKAI_API_KEY')
-SPARKAI_DOMAIN = os.environ.get('SPARKAI_DOMAIN', 'lite')
-SECRET_KEY = os.environ.get('SECRET_KEY', 'dev-secret-key')
+# 暂时没法从环境变量中读取，先直接从本地 config 文件中读取。
+# SPARKAI_APP_ID = os.environ.get('SPARKAI_APP_ID')
+# SPARKAI_API_SECRET = os.environ.get('SPARKAI_API_SECRET')
+# SPARKAI_API_KEY = os.environ.get('SPARKAI_API_KEY')
+# SPARKAI_DOMAIN = os.environ.get('SPARKAI_DOMAIN', 'lite')
+# SECRET_KEY = os.environ.get('SECRET_KEY', 'dev-secret-key')
 
 # 初始化星火大模型
 spark = ChatSparkLLM(
