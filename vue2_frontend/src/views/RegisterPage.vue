@@ -3,19 +3,6 @@
     <div class="reg-wrapper">
       <h1 class="title">注册</h1>
       <form @submit.prevent="postRegister()">
-        <!-- <label>
-          用户名：
-          <el-input v-model="username" placeholder="请输入用户名"></el-input>
-        </label>
-        <label>
-          密码：
-          <el-input
-            v-model="password"
-            placeholder="请输入密码"
-            show-password
-          ></el-input>
-        </label>
-        <el-button @click="postResgiter()" type="primary">注册</el-button> -->
         <div class="input">
           <div class="name">
             <i class="el-icon-user"></i>
@@ -35,9 +22,9 @@
             show-password
           ></el-input>
         </div>
-        
+
         <div class="button">
-          <el-button @click="postResgiter()" type="primary">注册</el-button>
+          <el-button @click="postRegister()" type="primary">注册</el-button>
         </div>
       </form>
       <p>
